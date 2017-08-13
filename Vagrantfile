@@ -16,7 +16,7 @@ Vagrant.configure(2) do |config|
 		server1.vm.hostname = "server1"
 		server1.vm.network "private_network", ip: "172.20.20.10"
 		server1.vm.provision "shell", inline: $writeToHosts1
-		server1.vm.provision "shell", inline: "yum install git -y && mkdir git && git clone https://github.com/paulgolub/training_DevOps.git git -b task1 && cat /git/sometextfile"
+		server1.vm.provision "shell", inline: "yum install git -y && mkdir clone_git_repo && git clone https://github.com/paulgolub/training_DevOps.git clone_git_repo -b task1 && cat /clone_git_repo/sometextfile"
 	end
 
 	config.vm.define "server2" do |server2|
