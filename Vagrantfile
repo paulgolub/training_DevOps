@@ -1,9 +1,9 @@
 $writeToHosts1 = <<SCRIPT
-	sudo sh -c "echo '172.20.20.11	server2' >> /etc/hosts"
+	sudo sh -c "echo '172.20.20.10	server1' >> /etc/hosts"
 SCRIPT
 
 $writeToHosts2 = <<SCRIPT
-	sudo sh -c "echo '172.20.20.10	server2' >> /etc/hosts"
+	sudo sh -c "echo '172.20.20.11	server2' >> /etc/hosts"
 SCRIPT
 
 Vagrant.configure(2) do |config|
