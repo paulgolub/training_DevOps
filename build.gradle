@@ -1,0 +1,10 @@
+apply plugin: 'war' 
+
+    war {archiveName'task33.war'} 
+        repositories { 
+        mavenCentral() 
+        } 
+    dependencies { 
+        compile 'log4j:log4j:1.2.17' 
+        compile group: 'commons-io', name: 'commons-io', version: '2.4' 
+}
