@@ -18,3 +18,8 @@ You need 3 virtual machines:
     - Do not forget about firewall first
     
 Or you can use Vagrant file too.
+
+You should copy:
+httpd.conf -> /etc/httpd/conf/ (rewrite the file)
+mod_jk.so -> /etc/httpd/modules/
+workers.properties -> /etc/httpd/conf/
