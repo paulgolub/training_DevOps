@@ -23,7 +23,7 @@ def version = propFile.substring(8)
 
     stage('nexus') {
         withCredentials([usernamePassword(credentialsId: '0b647aba-efe2-40fe-85d6-3fc0b310d1c9', passwordVariable: 'NEXUS_PASS', usernameVariable: 'NEXUS_U')]) {
-            sh "curl -Lv -u ${NEXUS_U}:${NEXUS_PASS} -T ${WAR} \"http://127.0.0.1:8081/nexus/content/repositories/snapshots/${tree}/${version}/\""
+            sh "curl -Lv -u ${NEXUS_U}:${NEXUS_PASS} -T ${WAR} \"http://127.0.0.1:8088/nexus/content/repositories/snapshots/${tree}/${version}/\""
         } 
     }
 
