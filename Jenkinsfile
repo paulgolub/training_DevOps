@@ -23,7 +23,7 @@ def version = propFile.substring(8)
 
     stage('nexus') {
         withCredentials([usernamePassword(credentialsId: '0b647aba-efe2-40fe-85d6-3fc0b310d1c9', passwordVariable: 'NEXUS_PASS', usernameVariable: 'NEXUS_U')]) {
-            sh "curl -Lv -u ${NEXUS_U}:${NEXUS_PASS} -T ${WAR} \"http://127.0.0.1:8088/nexus/content/repositories/snapshots/${tree}/${version}/\""
+            sh "curl -Lv -u ${NEXUS_U}:${NEXUS_PASS} -T ${WAR} \"http://127.0.0.1:8081/nexus/content/repositories/snapshots/${tree}/${version}/\""
         } 
     }
 
@@ -34,7 +34,7 @@ def version = propFile.substring(8)
                 def temp = "http://127.0.0.1:80/jkmanager/?cmd=update&from=list&w=balance&sw=${tomcatNode[i]}&vwa=1"
                 httpRequest httpMode: 'POST', url: temp
                 withCredentials([usernamePassword(credentialsId: '5d8716b7-4557-4f89-9772-dd1f5cf66605', passwordVariable: 'Tom_Pass', usernameVariable: 'Tom_U')]) {
-                sh "curl -o test.war \"http://localhost:8088/nexus/content/repositories/snapshots/${tree}/${version}/${artifact}\" | curl -u ${Tom_U}:${Tom_Pass} \"http://${tomcat}:8080/manager/text/undeploy?path=/test\" && curl -XPUT -T ${tomwar} -u ${Tom_U}:${Tom_Pass} \"http://${tomcat}:8080/manager/text/deploy?path=/test&update=true\" && curl -vv -u ${Tom_U}:${Tom_Pass} \"http://${tomcat}:8080/manager/text/reload?path=/test\""
+                sh "curl -o test.war \"http://localhost:8081/nexus/content/repositories/snapshots/${tree}/${version}/${artifact}\" | curl -u ${Tom_U}:${Tom_Pass} \"http://${tomcat}:8080/manager/text/undeploy?path=/test\" && curl -XPUT -T ${tomwar} -u ${Tom_U}:${Tom_Pass} \"http://${tomcat}:8080/manager/text/deploy?path=/test&update=true\" && curl -vv -u ${Tom_U}:${Tom_Pass} \"http://${tomcat}:8080/manager/text/reload?path=/test\""
                 }
                 sh "sleep 20" 
                 temp = "http://127.0.0.1:80/jkmanager/?cmd=update&from=list&w=balance&sw=${tomcatNode[i]}&vwa=0"
