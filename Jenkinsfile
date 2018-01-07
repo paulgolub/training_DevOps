@@ -6,7 +6,7 @@ def artifact = "task3.war"
 def WAR = "./build/libs/task3.war"
 def tomwar = "./test.war"
 def GitUser = "paulgolub"
-def GitUserEmail = "golubpaulv@gmail.com"
+def GitUserEmail = "g@gmail.com"
 def tomcatNode = ['tomcatnode1', 'tomcatnode2']
 def tomcats = ['tomcat1', 'tomcat2']
 
