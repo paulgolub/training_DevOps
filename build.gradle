@@ -23,7 +23,7 @@ task increment {
         int number = Integer.parseInt(devVersion)
         number++
         devVersion = Integer.toString(number)
-		changedGradleFile.write('version=' + mjVersion + '.')
+        changedGradleFile.write('version=' + mjVersion + '.')
         changedGradleFile.append(mnVersion + '.')
         changedGradleFile.append(devVersion)
     }
