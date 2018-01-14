@@ -1,0 +1,34 @@
+apply plugin: 'war'
+
+repositories {
+    mavenCentral()
+}
+dependencies {
+    compile 'log4j:log4j:1.2.17'
+    compile group: 'commons-io', name: 'commons-io', version: '2.4'
+}
+String file = "./build/resources/main/greeting.txt"
+String gradlePropertiesFile = "gradle.properties"
+
+task updateFile {
+    doLast {
+        def fileNameOutput2 = new File(file)
+        fileNameOutput2.append(' version ' + version)
+    }
+}
+task increment {
+    doLast {
+        def changedGradleFile = new File(gradlePropertiesFile)
+        def (mjVersion, mnVersion, devVersion) = version.tokenize('.')
+        int number = Integer.parseInt(devVersion)
+        number++
+        devVersion = Integer.toString(number)
+        changedGradleFile.write('version=' + mjVersion + '.')
+        changedGradleFile.append(mnVersion + '.')
+        changedGradleFile.append(devVersion)
+    }
+}
+war {
+    archiveName "task3.war"
+}
+war.dependsOn updateFile
